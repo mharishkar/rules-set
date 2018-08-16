@@ -1,0 +1,68 @@
+.container {
+    width:780px;
+    padding: 10px 20px;
+    margin: 0 auto;
+    .card {
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        padding: 24px;
+        border-radius: 2px;
+        background: #fff;
+        color: rgba(0,0,0,.87);
+    } 
+    p {
+        display: inline-block;
+    }
+    .margin-around {
+        margin: 0 10px;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+ul {
+    padding: 0;
+    border: 1px solid #989595;
+    margin-top: 0;
+    margin-left: 21px;
+    li {
+        list-style-type: none;
+        padding: 0 20px;
+        &:nth-child(odd) {
+            background: #a6dee859;
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 5px 12px;
+            border: 1px solid #9c9696;
+            border-radius: 50%;
+            margin-right: 5px;
+            font-size: 20px;
+            background: #fff;
+            cursor: pointer;
+        }
+    }
+}
+.btn-section {
+    margin: 10px 2px;
+    text-align: right;
+    .bttn {
+        padding: 10px 20px;
+        margin-left: 10px; 
+        border: 1px solid #b7b3b3;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        color: #000;
+        &__primary {
+            color: #fff;
+            background: blue;
+            border: 1px solid inherit;
+        }
+        &:hover {
+            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        }
+    }
+}

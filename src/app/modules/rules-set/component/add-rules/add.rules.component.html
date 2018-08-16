@@ -1,0 +1,60 @@
+<div class="container">
+    <h1>Add Rules</h1>
+    <div class="card">
+        <form [formGroup]="addRulesForm" (ngSubmit)="formHandler(addRulesForm.value)">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Rules Name*" formControlName="rule_name">
+            </mat-form-field>
+            <p>If</p>
+            <mat-form-field class="margin-around">
+                <mat-select formControlName="applicable">
+                    <mat-option value="option" selected>All</mat-option>
+                    <mat-option value="option">Any</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>of the following conditions met:</p>
+            <ul class="condition-section" formArrayName="rulesArray">
+                <li *ngFor="let address of addRulesForm.get('rulesArray').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-select (selectionChange)="changeDropDownValues($event.value)" formContolName="field_name">
+                                <mat-option *ngFor="let item of fieldNames" value="{{item}}">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="margin-around">
+                            <mat-select formContolName="predicate" >
+                                <mat-option *ngFor="let item of predicates" value="{{item}}">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="margin-around"> 
+                            <input matInput placeholder="description" formContolName="description">
+                        </mat-form-field>
+                        <span class="btn">-</span>
+                        <span class="btn btn__addbtn">+</span>
+                    </div>
+                </li>
+            </ul>
+            <p>perform the following actions</p>
+            <ul class="condition-section" fromArrayName="actionArray">
+                <li *ngFor="let address of addRulesForm.get('actionArray').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-select (selectionChange)="addLabel($event.value)" formContolName="action">
+                                <mat-option *ngFor="let item of actions" value="{{item}}">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="showLabel" class="margin-around">
+                            <input matInput placeholder="Label" formContolName="label_name">
+                        </mat-form-field>
+                        <span class="btn">-</span>
+                        <span class="btn btn__addbtn">+</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn-section">
+                <button class="bttn" type="button">cancel</button>
+                <button class="bttn bttn__primary" type="submit">ok</button>
+            </div>
+        </form>
+    </div>
+</div>
