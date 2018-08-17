@@ -17,13 +17,13 @@
                 <li *ngFor="let rule of addRulesForm.get('ruleArray').controls; let i = index;">
                     <div [formGroupName]="i">
                         <mat-form-field>
-                            <mat-select  formControlName="field_name">
+                            <mat-select (selectionChange)="onChangeFieldName($event.value, i)" formControlName="field_name">
                                 <mat-option *ngFor="let item of fieldNames" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around">
                             <mat-select formControlName="predicate">
-                                <mat-option *ngFor="let item of getPredicates()" value="{{item}}">{{item}}</mat-option>
+                                <mat-option *ngFor="let item of addRulesForm.get('ruleArray').controls[i].controls['predicateArray'].value" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around"> 
@@ -34,28 +34,30 @@
                     </div>
                 </li>
             </ul>
-            <!-- <p>perform the following actions</p>
-            <ul class="condition-section" fromArrayName="actionArray">
+            <p>perform the following actions</p>
+            <ul class="condition-section" formArrayName="actionArray">
                 <li *ngFor="let action of addRulesForm.get('actionArray').controls; let i = index;">
                     <div [formGroupName]="i">
                         <mat-form-field>
-                            <mat-select (selectionChange)="addLabel($event.value)" formControlName="action">
+                            <mat-select (selectionChange)="addLabel($event.value, i)" formControlName="action">
                                 <mat-option *ngFor="let item of actions" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <mat-form-field *ngIf="showLabel" class="margin-around">
-                            <input matInput placeholder="Label" formControlName="label_name">
+                        <mat-form-field *ngIf="addRulesForm.get('actionArray').controls[i].controls['label']" class="margin-around">
+                            <input matInput placeholder="Label" formControlName="label">
                         </mat-form-field>
-                        <span class="btn" (click)="removeActions(i)">-</span>
-                        <span class="btn btn__addbtn" (click)="addActions()">+</span>
+                        <div class="float-btn">
+                            <button class="btn" [disabled]="addRulesForm.controls['actionArray'].length < 2" (click)="removeActions(i)">-</button>
+                            <button class="btn btn__addbtn" [disabled]="addRulesForm.controls['actionArray'].invalid"  (click)="addActions()">+</button>
+                        </div>
                     </div>
                 </li>
-            </ul> -->
+            </ul>
+            {{addRulesForm.value | json}}
             <div class="btn-section">
                 <button class="bttn" type="button">cancel</button>
                 <button class="bttn bttn__primary" type="submit">ok</button>
             </div>
-            {{addRulesForm.value | json}}
         </form>
     </div>
 </div>

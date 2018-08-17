@@ -1,7 +1,7 @@
 import { constants } from './../../../../app.constant';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators,
-         FormBuilder, FormArray
+         FormBuilder, FormArray, FormControl
         }                                from '@angular/forms';
 
 @Component({
@@ -16,18 +16,15 @@ export class AddRulesComponent implements OnInit {
     
     showLabel: boolean = false;
     
-    predicates  : any = [];
-    actionsArray: any;
+    predicates   : any = [];
+    actionsArray : any;
     
-    addRulesForm  : FormGroup   
-    predicateArray: FormArray;
-    rulesArray    : FormArray;
+    addRulesForm   : FormGroup   
+    predicateArray : FormArray;
+    rulesArray     : FormArray;
 
-    constructor(
-        private formBuilder : FormBuilder
-    ) {
+    constructor(private formBuilder : FormBuilder) {
         this.buildForm();
-        this.changeDropDownValues('from',0);
     }
 
     ngOnInit() { }
@@ -36,19 +33,28 @@ export class AddRulesComponent implements OnInit {
         this.addRulesForm = this.formBuilder.group({
             rule_name   : ['', Validators.required],
             applicable  : ['', Validators.required],
-            ruleArray  : this.formBuilder.array([]),
+            ruleArray   : this.formBuilder.array([]),
             actionArray : this.formBuilder.array([]),
         });
-
         this.addRules();
         this.addActions();
     }
 
+    onChangeFieldName(fieldName, index) {
+        const control = this.addRulesForm.controls['ruleArray']['controls'][index].controls['predicateArray'];
+        if (fieldName.includes('Received')) {
+            control.setValue(constants.datePredicates);
+        } else {
+            control.setValue(constants.stringPredicates);
+        }
+    }
+
     createRules(): FormGroup {
         return this.formBuilder.group({
-            field_name  : ['', Validators.required],
-            predicate   : ['', Validators.required],
-            description : ['', Validators.required]
+            field_name     : ['', Validators.required],
+            predicateArray : ['', Validators.required],
+            description    : ['', Validators.required],
+            predicate      : ['', Validators.required]
         });
     }
     
@@ -60,13 +66,11 @@ export class AddRulesComponent implements OnInit {
     removeRules(index) {
         const control = <FormArray>this.addRulesForm.controls['ruleArray'];
         control.removeAt(index);
-        this.predicates.splice(index,1);
     }
 
     createActions(): FormGroup {
         return this.formBuilder.group({
-            action     : ['', Validators.required],
-            label_name : []
+            action     : ['', Validators.required]
         });
     }
     
@@ -80,20 +84,17 @@ export class AddRulesComponent implements OnInit {
         control.removeAt(index);
     }
 
-    changeDropDownValues(value,index) {
-        value.includes('Received')
-            ?  this.getPredicates(constants.datePredicates)
-            :  this.getPredicates(constants.stringPredicates);
-    }
-
-    getPredicates(value) {
-        console.log(value);
-        return value || [];
-    }
-
-    addLabel(value) {
-        value.includes('Label') 
-            ? this.showLabel = true
-            : this.showLabel = false;
+    addLabel(value, index) {
+        if (value.includes('Label')) {
+            this.showLabel = true;
+            console.log(index);
+            const control = this.addRulesForm.controls['actionArray']['controls'] as FormGroup;
+            this.addRulesForm.controls['actionArray']['controls'].addControl('label', new FormControl('', Validators.required));
+            // control.push({label: ''});
+        }
+        else {
+            this.showLabel = false;
+            const control = this.addRulesForm.controls['actionArray']['controls'][index].controls['label'];
+        }
     }
 }

@@ -72,3 +72,8 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: none;
 }
+
+.float-btn {
+    float: right;
+    margin-right: 5px;
+}
