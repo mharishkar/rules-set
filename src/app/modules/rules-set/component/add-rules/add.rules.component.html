@@ -13,48 +13,49 @@
                 </mat-select>
             </mat-form-field>
             <p>of the following conditions met:</p>
-            <ul class="condition-section" formArrayName="rulesArray">
-                <li *ngFor="let address of addRulesForm.get('rulesArray').controls; let i = index;">
+            <ul class="condition-section" formArrayName="ruleArray">
+                <li *ngFor="let rule of addRulesForm.get('ruleArray').controls; let i = index;">
                     <div [formGroupName]="i">
                         <mat-form-field>
-                            <mat-select (selectionChange)="changeDropDownValues($event.value)" formContolName="field_name">
+                            <mat-select  formControlName="field_name">
                                 <mat-option *ngFor="let item of fieldNames" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around">
-                            <mat-select formContolName="predicate" >
-                                <mat-option *ngFor="let item of predicates" value="{{item}}">{{item}}</mat-option>
+                            <mat-select formControlName="predicate">
+                                <mat-option *ngFor="let item of getPredicates()" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around"> 
-                            <input matInput placeholder="description" formContolName="description">
+                            <input matInput placeholder="description" formControlName="description">
                         </mat-form-field>
-                        <span class="btn">-</span>
-                        <span class="btn btn__addbtn">+</span>
+                        <button class="btn" (click)="removeRules(i)" [disabled]="addRulesForm.controls['ruleArray'].length < 2">-</button>
+                        <button class="btn btn__addbtn" [disabled]="addRulesForm.controls['ruleArray'].invalid" (click)="addRules()">+</button>
                     </div>
                 </li>
             </ul>
-            <p>perform the following actions</p>
+            <!-- <p>perform the following actions</p>
             <ul class="condition-section" fromArrayName="actionArray">
-                <li *ngFor="let address of addRulesForm.get('actionArray').controls; let i = index;">
+                <li *ngFor="let action of addRulesForm.get('actionArray').controls; let i = index;">
                     <div [formGroupName]="i">
                         <mat-form-field>
-                            <mat-select (selectionChange)="addLabel($event.value)" formContolName="action">
+                            <mat-select (selectionChange)="addLabel($event.value)" formControlName="action">
                                 <mat-option *ngFor="let item of actions" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field *ngIf="showLabel" class="margin-around">
-                            <input matInput placeholder="Label" formContolName="label_name">
+                            <input matInput placeholder="Label" formControlName="label_name">
                         </mat-form-field>
-                        <span class="btn">-</span>
-                        <span class="btn btn__addbtn">+</span>
+                        <span class="btn" (click)="removeActions(i)">-</span>
+                        <span class="btn btn__addbtn" (click)="addActions()">+</span>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <div class="btn-section">
                 <button class="bttn" type="button">cancel</button>
                 <button class="bttn bttn__primary" type="submit">ok</button>
             </div>
+            {{addRulesForm.value | json}}
         </form>
     </div>
 </div>
