@@ -4,7 +4,7 @@ import { MatTableModule,
          MatPaginatorModule,
          MatFormFieldModule,
          MatInputModule, 
-         MatCardModule, }          from '@angular/material';
+         MatCardModule, MatButtonModule }          from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
+        MatButtonModule,
     ],
     declarations: [
     ],
@@ -35,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
+        MatButtonModule,
     ],
     providers: [
     ]

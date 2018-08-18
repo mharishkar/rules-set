@@ -1,0 +1,152 @@
+{
+  "rule_set": [
+    {
+      "id": 1,
+      "rule_name": "A",
+      "applicable": "any",
+      "ruleArray": [
+        {
+          "field_name": "",
+          "description": "",
+          "predicate": ""
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "rule_name": "B",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "",
+          "description": "",
+          "predicate": ""
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "rule_name": "B",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "",
+          "description": "",
+          "predicate": ""
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "rule_name": "test",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "From",
+          "predicateArray": [
+            "Contains",
+            "Doesnot Contain",
+            "Equals",
+            "Doesnot Equal"
+          ],
+          "description": "hcgj",
+          "predicate": "Contains"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "tenmiles"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "rule_name": "dgfhgjhk",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "Received Date",
+          "predicateArray": [
+            "Less than Days",
+            "Less than Months",
+            "Greater than Days",
+            "Greater than Months"
+          ],
+          "description": "hchvj",
+          "predicate": "Greater than Months"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Mark As Read"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "rule_name": "hgchj",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "From",
+          "predicateArray": [
+            "Contains",
+            "Doesnot Contain",
+            "Equals",
+            "Doesnot Equal"
+          ],
+          "description": "jvbkj",
+          "predicate": "Contains"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Mark As Read"
+        }
+      ],
+      "id": 6
+    },
+    {
+      "rule_name": "test",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "From",
+          "predicateArray": [
+            "Contains",
+            "Doesnot Contain",
+            "Equals",
+            "Doesnot Equal"
+          ],
+          "description": "hcgj",
+          "predicate": "Contains"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "tenmiles.com"
+        }
+      ],
+      "id": 7
+    }
+  ]
+}

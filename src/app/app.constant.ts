@@ -24,5 +24,7 @@ export const constants = {
         'Mark As Unread',
         'Archive Message',
         'Add Label'
-    ]
+    ],
+
+    baseUrl: "http://localhost:3005/rule_set"
 }

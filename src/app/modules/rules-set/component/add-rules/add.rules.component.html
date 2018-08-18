@@ -1,15 +1,16 @@
 <div class="container">
     <h1>Add Rules</h1>
     <div class="card">
-        <form [formGroup]="addRulesForm" (ngSubmit)="formHandler(addRulesForm.value)">
+        <form [formGroup]="addRulesForm" (ngSubmit)="rulesSubmitHandler(addRulesForm.value)">
             <mat-form-field class="full-width">
                 <input matInput placeholder="Rules Name*" formControlName="rule_name">
             </mat-form-field>
             <p>If</p>
             <mat-form-field class="margin-around">
                 <mat-select formControlName="applicable">
-                    <mat-option value="option" selected>All</mat-option>
-                    <mat-option value="option">Any</mat-option>
+                    <mat-option value="">Applicable</mat-option>
+                    <mat-option value="all">All</mat-option>
+                    <mat-option value="any">Any</mat-option>
                 </mat-select>
             </mat-form-field>
             <p>of the following conditions met:</p>
@@ -18,16 +19,18 @@
                     <div [formGroupName]="i">
                         <mat-form-field>
                             <mat-select (selectionChange)="onChangeFieldName($event.value, i)" formControlName="field_name">
+                                <mat-option value="">Field Name</mat-option>
                                 <mat-option *ngFor="let item of fieldNames" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around">
                             <mat-select formControlName="predicate">
+                                    <mat-option value="">Predicate</mat-option>
                                 <mat-option *ngFor="let item of addRulesForm.get('ruleArray').controls[i].controls['predicateArray'].value" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="margin-around"> 
-                            <input matInput placeholder="description" formControlName="description">
+                            <input matInput placeholder="value" formControlName="description">
                         </mat-form-field>
                         <button class="btn" (click)="removeRules(i)" [disabled]="addRulesForm.controls['ruleArray'].length < 2">-</button>
                         <button class="btn btn__addbtn" [disabled]="addRulesForm.controls['ruleArray'].invalid" (click)="addRules()">+</button>
@@ -40,6 +43,7 @@
                     <div [formGroupName]="i">
                         <mat-form-field>
                             <mat-select (selectionChange)="addLabel($event.value, i)" formControlName="action">
+                                <mat-option value="">Action</mat-option>
                                 <mat-option *ngFor="let item of actions" value="{{item}}">{{item}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -53,10 +57,9 @@
                     </div>
                 </li>
             </ul>
-            {{addRulesForm.value | json}}
             <div class="btn-section">
                 <button class="bttn" type="button">cancel</button>
-                <button class="bttn bttn__primary" type="submit">ok</button>
+                <button [disabled]="addRulesForm.invalid" class="bttn bttn__primary" type="submit">ok</button>
             </div>
         </form>
     </div>

@@ -12,16 +12,22 @@
 
 .mat-icon {
     color: #5e5e5e69;
-    opacity: 0;
+    // opacity: 0;
     cursor: pointer;
     font-size: 18px;
     line-height: 25px;
 }
 
-tr:hover .mat-icon {
-    opacity: 1;
-}
+// tr:hover .mat-icon {
+//     opacity: 1;
+// }
 
 .margin {
     margin-left: 15px;
+}
+
+.fab-btn {
+    position: absolute;
+    right: 27%;
+    top: 22%;
 }

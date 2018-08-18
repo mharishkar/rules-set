@@ -1,8 +1,10 @@
+import { AppService } from './../../service/app.service';
 import { constants } from './../../../../app.constant';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators,
          FormBuilder, FormArray, FormControl
         }                                from '@angular/forms';
+import { ActivatedRoute, Router } from '../../../../../../node_modules/@angular/router';
 
 @Component({
     selector    : 'add-rules',
@@ -23,11 +25,31 @@ export class AddRulesComponent implements OnInit {
     predicateArray : FormArray;
     rulesArray     : FormArray;
 
-    constructor(private formBuilder : FormBuilder) {
+    ruleId: number;
+
+    constructor(
+        private formBuilder : FormBuilder,
+        private appService: AppService,
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+    ) {}
+    
+    ngOnInit() { 
+        this.activatedRoute.queryParams.subscribe(val => {
+            if (val.id) {
+                this.ruleId = val.id;
+                this.getRuleById();
+            }
+        });
         this.buildForm();
     }
 
-    ngOnInit() { }
+    getRuleById() {
+        this.appService.getRuleById(this.ruleId)
+            .subscribe(res => {
+                this.patchRulesetForm(res[0]);
+            });
+    }
 
     buildForm() {
         this.addRulesForm = this.formBuilder.group({
@@ -38,6 +60,15 @@ export class AddRulesComponent implements OnInit {
         });
         this.addRules();
         this.addActions();
+    }
+
+    patchRulesetForm(ruleset) {
+        this.addRulesForm.patchValue(ruleset, {onlySelf: true});
+        ruleset.actionArray.map((action, index) => {
+            if (action.action.includes('Label')) {
+                this.addLabel(action.action, index, action.label);
+            }
+        });
     }
 
     onChangeFieldName(fieldName, index) {
@@ -84,17 +115,21 @@ export class AddRulesComponent implements OnInit {
         control.removeAt(index);
     }
 
-    addLabel(value, index) {
+    addLabel(value, index, label?) {
         if (value.includes('Label')) {
-            this.showLabel = true;
-            console.log(index);
-            const control = this.addRulesForm.controls['actionArray']['controls'] as FormGroup;
-            this.addRulesForm.controls['actionArray']['controls'].addControl('label', new FormControl('', Validators.required));
-            // control.push({label: ''});
+            const control = <FormGroup>this.addRulesForm.controls['actionArray']['controls'];
+            control[index].addControl('label', new FormControl(label ? label : '', Validators.required));
         }
         else {
-            this.showLabel = false;
-            const control = this.addRulesForm.controls['actionArray']['controls'][index].controls['label'];
+            const control = <FormGroup>this.addRulesForm.controls['actionArray']['controls'];
+            control[index].removeControl('label', new FormControl('', Validators.required));
         }
+    }
+
+    rulesSubmitHandler(ruleset) {
+        this.appService.createRuleset(ruleset)
+            .subscribe(res =>{
+                this.router.navigateByUrl('/rules-list');
+            });
     }
 }

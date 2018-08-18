@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev": "concurrently -k \"npm run start\" \"npm run db\"",
+    "db": "json-server --watch db.json --port 3005"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +25,9 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@ng-bootstrap/ng-bootstrap": "^3.0.0",
+    "concurrently": "^3.6.1",
     "core-js": "^2.5.4",
+    "json-server": "^0.14.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
