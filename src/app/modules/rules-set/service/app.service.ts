@@ -34,6 +34,15 @@ export class AppService {
     }
 
     /**
+     * Update service
+     * @param ruleset {Object}
+     * @param ruleId {number}
+     */
+    updateRuleset(ruleset: {}, ruleId: number): Observable<any> {
+        return this.http.put(`${constants.baseUrl}/${ruleId}`, ruleset);
+    }
+
+    /**
      * Delete service
      * @param ruleId {number}
      */

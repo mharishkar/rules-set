@@ -127,7 +127,20 @@ export class AddRulesComponent implements OnInit {
     }
 
     rulesSubmitHandler(ruleset) {
+        this.ruleId
+            ? this.updateRuleset(ruleset, this.ruleId)
+            : this.createRuleset(ruleset);
+    }
+
+    createRuleset(ruleset) {
         this.appService.createRuleset(ruleset)
+            .subscribe(res =>{
+                this.router.navigateByUrl('/rules-list');
+            });
+    }
+
+    updateRuleset(ruleset, id) {
+        this.appService.updateRuleset(ruleset, id)
             .subscribe(res =>{
                 this.router.navigateByUrl('/rules-list');
             });

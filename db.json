@@ -79,7 +79,7 @@
       "id": 4
     },
     {
-      "rule_name": "dgfhgjhk",
+      "rule_name": "dgfhgjhkdsfdg",
       "applicable": "all",
       "ruleArray": [
         {
@@ -96,7 +96,8 @@
       ],
       "actionArray": [
         {
-          "action": "Mark As Read"
+          "action": "Add Label",
+          "label": "adsfdgf"
         }
       ],
       "id": 5
@@ -147,6 +148,125 @@
         }
       ],
       "id": 7
+    },
+    {
+      "rule_name": "tdfhgjh",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "From",
+          "predicateArray": [
+            "Contains",
+            "Doesnot Contain",
+            "Equals",
+            "Doesnot Equal"
+          ],
+          "description": "yghjk",
+          "predicate": "Contains"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Mark As Unread"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "rule_name": "dgfhgjhk",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "Received Date",
+          "predicateArray": [
+            "Less than Days",
+            "Less than Months",
+            "Greater than Days",
+            "Greater than Months"
+          ],
+          "description": "hchvj",
+          "predicate": "Greater than Months"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "yftguh"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "rule_name": "dgfhgjhk",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "Received Date",
+          "predicateArray": [
+            "Less than Days",
+            "Less than Months",
+            "Greater than Days",
+            "Greater than Months"
+          ],
+          "description": "hchvj",
+          "predicate": "Greater than Months"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "sdfdg"
+        }
+      ],
+      "id": 10
+    },
+    {
+      "rule_name": "dgfhgjhk",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "Received Date",
+          "predicateArray": [
+            "Less than Days",
+            "Less than Months",
+            "Greater than Days",
+            "Greater than Months"
+          ],
+          "description": "hchvj",
+          "predicate": "Greater than Months"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "dfsgdf"
+        }
+      ],
+      "id": 11
+    },
+    {
+      "rule_name": "test_update",
+      "applicable": "all",
+      "ruleArray": [
+        {
+          "field_name": "Received Date",
+          "predicateArray": [
+            "Less than Days",
+            "Less than Months",
+            "Greater than Days",
+            "Greater than Months"
+          ],
+          "description": "hchvj",
+          "predicate": "Greater than Months"
+        }
+      ],
+      "actionArray": [
+        {
+          "action": "Add Label",
+          "label": "fsgdhfg"
+        }
+      ],
+      "id": 12
     }
   ]
 }
